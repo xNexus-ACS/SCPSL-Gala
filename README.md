@@ -6,4 +6,5 @@ Contiene todo el codigo relacionado con la Gala de SCPSL España
 
 - Mapa: xNexusACS
 - PluginBase: xNexusACS
+- Bot: xNexusACS
 - ...
