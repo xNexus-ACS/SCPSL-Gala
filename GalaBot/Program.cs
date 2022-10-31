@@ -67,6 +67,11 @@ namespace GalaBot
 
             _client.UserJoined += UtilsModule.OnUserJoin;
             _client.UserLeft += UtilsModule.OnUserLeft;
+            _client.MessageDeleted += UtilsModule.OnMessageDelete;
+            _client.ThreadCreated += UtilsModule.OnThreadCreated;
+            _client.ThreadDeleted += UtilsModule.OnThreadDeleted;
+            _client.InviteCreated += UtilsModule.OnInviteCreated;
+            _client.InviteDeleted += UtilsModule.OnInviteDeleted;
 
             _client.Ready += async () =>
             {
