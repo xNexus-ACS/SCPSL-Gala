@@ -15,7 +15,7 @@ namespace GalaPlugin
         public void OnWaitingForPlayers()
         {
 #if DEBUG
-            Log.Debug("Esperando Jugadores");
+            Log.Info("OnWaitingForPlayers Triggered");
 #endif
             GameObject.Find("StartRound").transform.localScale = Vector3.zero;
             Round.IsLobbyLocked = true;
@@ -24,11 +24,17 @@ namespace GalaPlugin
 
         public void OnTeamSpawn(RespawningTeamEventArgs ev)
         {
+#if DEBUG
+            Log.Info("OnTeamSpawn Triggered");
+#endif
             ev.IsAllowed = false;
         }
 
         public void OnVerified(VerifiedEventArgs ev)
         {
+#if DEBUG
+            Log.Info("OnVerified Triggered");
+#endif
             if (!Round.IsStarted && (GameCore.RoundStart.singleton.NetworkTimer > 1 ||
                                      GameCore.RoundStart.singleton.NetworkTimer == -2))
             {
@@ -54,11 +60,17 @@ namespace GalaPlugin
 
         public void OnAnnouncingNtfEntrance(AnnouncingNtfEntranceEventArgs ev)
         {
+#if DEBUG
+            Log.Info("OnAnnouncingNtfEntrance Triggered");
+#endif
             ev.IsAllowed = false;
         }
 
         public void OnRoundStart()
         {
+#if DEBUG
+            Log.Info("OnRoundStart Triggered");
+#endif
             Round.IsLocked = true;
             Round.IsLobbyLocked = false;
 
@@ -69,8 +81,20 @@ namespace GalaPlugin
             });
         }
 
+        public void OnInteractingDoor(InteractingDoorEventArgs ev)
+        {
+#if DEBUG
+            Log.Info("OnInteractingDoor Triggered");
+#endif
+            if (!Round.IsStarted)
+                ev.IsAllowed = false;
+        }
+
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
+#if DEBUG
+            Log.Info("OnChangingRole Triggered");
+#endif
             ev.Player.IsInvisible = false;
             ev.Player.NoClipEnabled = false;
             ev.Player.IsBypassModeEnabled = false;
@@ -78,6 +102,23 @@ namespace GalaPlugin
             
             if (ev.Player.Scale != Vector3.one)
                 ev.Player.Scale = Vector3.one;
+        }
+
+        public void OnInteractingElevator(InteractingElevatorEventArgs ev)
+        {
+#if DEBUG
+            Log.Info("OnInteractingElevator Triggered");
+#endif
+            ev.IsAllowed = false;
+        }
+
+        public void OnUsingItem(UsingItemEventArgs ev)
+        {
+#if DEBUG
+            Log.Info("OnUsingItem Triggered");
+#endif
+            if (ev.Item.Type is ItemType.SCP244a or ItemType.SCP244b)
+                ev.IsAllowed = false;
         }
     }
 }

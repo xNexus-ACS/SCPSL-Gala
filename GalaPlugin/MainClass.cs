@@ -22,6 +22,9 @@ namespace GalaPlugin
             Exiled.Events.Handlers.Server.RoundStarted += EventHandlers.OnRoundStart;
             Exiled.Events.Handlers.Player.ChangingRole += EventHandlers.OnChangingRole;
             Exiled.Events.Handlers.Player.Verified += EventHandlers.OnVerified;
+            Exiled.Events.Handlers.Player.InteractingDoor += EventHandlers.OnInteractingDoor;
+            Exiled.Events.Handlers.Player.InteractingElevator += EventHandlers.OnInteractingElevator;
+            Exiled.Events.Handlers.Player.UsingItem += EventHandlers.OnUsingItem;
             Exiled.Events.Handlers.Map.AnnouncingNtfEntrance += EventHandlers.OnAnnouncingNtfEntrance;
 
             base.OnEnabled();
@@ -34,6 +37,9 @@ namespace GalaPlugin
             Exiled.Events.Handlers.Server.RoundStarted -= EventHandlers.OnRoundStart;
             Exiled.Events.Handlers.Player.ChangingRole -= EventHandlers.OnChangingRole;
             Exiled.Events.Handlers.Player.Verified -= EventHandlers.OnVerified;
+            Exiled.Events.Handlers.Player.InteractingDoor -= EventHandlers.OnInteractingDoor;
+            Exiled.Events.Handlers.Player.InteractingElevator -= EventHandlers.OnInteractingElevator;
+            Exiled.Events.Handlers.Player.UsingItem -= EventHandlers.OnUsingItem;
             Exiled.Events.Handlers.Map.AnnouncingNtfEntrance -= EventHandlers.OnAnnouncingNtfEntrance;
 
             EventHandlers = null;
