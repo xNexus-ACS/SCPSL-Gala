@@ -19,6 +19,7 @@ namespace GalaPlugin
             
             Exiled.Events.Handlers.Server.WaitingForPlayers += EventHandlers.OnWaitingForPlayers;
             Exiled.Events.Handlers.Server.RespawningTeam += EventHandlers.OnTeamSpawn;
+            Exiled.Events.Handlers.Server.RoundStarted += EventHandlers.OnRoundStart;
             Exiled.Events.Handlers.Player.ChangingRole += EventHandlers.OnChangingRole;
             Exiled.Events.Handlers.Player.Verified += EventHandlers.OnVerified;
             Exiled.Events.Handlers.Map.AnnouncingNtfEntrance += EventHandlers.OnAnnouncingNtfEntrance;
@@ -30,6 +31,7 @@ namespace GalaPlugin
         {
             Exiled.Events.Handlers.Server.WaitingForPlayers -= EventHandlers.OnWaitingForPlayers;
             Exiled.Events.Handlers.Server.RespawningTeam -= EventHandlers.OnTeamSpawn;
+            Exiled.Events.Handlers.Server.RoundStarted -= EventHandlers.OnRoundStart;
             Exiled.Events.Handlers.Player.ChangingRole -= EventHandlers.OnChangingRole;
             Exiled.Events.Handlers.Player.Verified -= EventHandlers.OnVerified;
             Exiled.Events.Handlers.Map.AnnouncingNtfEntrance -= EventHandlers.OnAnnouncingNtfEntrance;

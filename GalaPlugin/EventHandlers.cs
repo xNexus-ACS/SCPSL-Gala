@@ -18,6 +18,8 @@ namespace GalaPlugin
             Log.Debug("Esperando Jugadores");
 #endif
             GameObject.Find("StartRound").transform.localScale = Vector3.zero;
+            Round.IsLobbyLocked = true;
+            Round.IsLocked = false;
         }
 
         public void OnTeamSpawn(RespawningTeamEventArgs ev)
@@ -53,6 +55,18 @@ namespace GalaPlugin
         public void OnAnnouncingNtfEntrance(AnnouncingNtfEntranceEventArgs ev)
         {
             ev.IsAllowed = false;
+        }
+
+        public void OnRoundStart()
+        {
+            Round.IsLocked = true;
+            Round.IsLobbyLocked = false;
+
+            Timing.CallDelayed(5f, () =>
+            {
+                foreach(Player player in Player.List)
+                    player.SetRole(RoleType.Tutorial);
+            });
         }
 
         public void OnChangingRole(ChangingRoleEventArgs ev)
