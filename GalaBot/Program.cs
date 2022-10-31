@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
+using GalaBot.Modules;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Yaml;
 using Microsoft.Extensions.DependencyInjection;
@@ -63,6 +64,9 @@ namespace GalaBot
             var config = provider.GetRequiredService<IConfigurationRoot>();
             
             await provider.GetRequiredService<InteractionHandler>().InstallCommandsAsync();
+
+            _client.UserJoined += UtilsModule.OnUserJoin;
+            _client.UserLeft += UtilsModule.OnUserLeft;
 
             _client.Ready += async () =>
             {
