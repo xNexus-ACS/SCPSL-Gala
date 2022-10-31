@@ -165,5 +165,27 @@ namespace GalaBot.Modules
                 Console.WriteLine(ex);
             }
         }
+
+        public static async Task OnUserBanned(SocketUser user, SocketGuild guild)
+        {
+            try
+            {
+                var embed = new EmbedBuilder()
+                    .WithColor(Color.Red)
+                    .WithAuthor("Un Usuario a sido baneado")
+                    .WithDescription("**Usuario:** " + user.Mention + "\n**ID:** " + user.Id + "\n**Fecha:** " +
+                                     DateTime.Now.ToString("dd/MM/yyyy"))
+                    .WithFooter(Footer)
+                    .WithCurrentTimestamp()
+                    .Build();
+
+                var logChannel = Program.Instance.Guild.GetTextChannel(987085381877006366);
+                await logChannel.SendMessageAsync(embed: embed);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
     }
 }
