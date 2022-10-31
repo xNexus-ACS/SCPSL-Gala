@@ -33,6 +33,7 @@ namespace GalaPlugin
             Exiled.Events.Handlers.Player.UsingItem += EventHandlers.OnUsingItem;
             Exiled.Events.Handlers.Player.Transmitting += EventHandlers.OnTransmitting;
             Exiled.Events.Handlers.Player.VoiceChatting += EventHandlers.OnVoiceChatting;
+            Exiled.Events.Handlers.Player.Dying += EventHandlers.OnDying;
             Exiled.Events.Handlers.Map.AnnouncingNtfEntrance += EventHandlers.OnAnnouncingNtfEntrance;
 
             base.OnEnabled();
@@ -50,6 +51,7 @@ namespace GalaPlugin
             Exiled.Events.Handlers.Player.UsingItem -= EventHandlers.OnUsingItem;
             Exiled.Events.Handlers.Player.Transmitting -= EventHandlers.OnTransmitting;
             Exiled.Events.Handlers.Player.VoiceChatting -= EventHandlers.OnVoiceChatting;
+            Exiled.Events.Handlers.Player.Dying -= EventHandlers.OnDying;
             Exiled.Events.Handlers.Map.AnnouncingNtfEntrance -= EventHandlers.OnAnnouncingNtfEntrance;
 
             harmony.UnpatchAll(harmony.Id);

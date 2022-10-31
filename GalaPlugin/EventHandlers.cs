@@ -25,6 +25,14 @@ namespace GalaPlugin
             ObjectSpawner.SpawnSchematic("NombreSchematica", new Vector3(0,0,0));
         }
 
+        public void OnDying(DyingEventArgs ev)
+        {
+#if DEBUG
+            Log.Info("OnDying Triggered");
+#endif
+            ev.Target.ClearInventory();
+        }
+
         public void OnTeamSpawn(RespawningTeamEventArgs ev)
         {
 #if DEBUG
