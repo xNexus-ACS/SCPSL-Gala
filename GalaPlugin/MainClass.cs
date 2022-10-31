@@ -1,5 +1,6 @@
 ﻿using System;
 using Exiled.API.Features;
+using HarmonyLib;
 
 namespace GalaPlugin
 {
@@ -12,10 +13,15 @@ namespace GalaPlugin
         public override Version RequiredExiledVersion { get; } = new Version(5, 3, 0);
         
         public EventHandlers EventHandlers { get; private set; }
+        private static Harmony harmony;
+        public static MainClass Singleton;
         
         public override void OnEnabled()
         {
+            Singleton = this;
             EventHandlers = new EventHandlers(this);
+            harmony = new Harmony("gala.plugin");
+            harmony.PatchAll();
             
             Exiled.Events.Handlers.Server.WaitingForPlayers += EventHandlers.OnWaitingForPlayers;
             Exiled.Events.Handlers.Server.RespawningTeam += EventHandlers.OnTeamSpawn;
@@ -25,6 +31,8 @@ namespace GalaPlugin
             Exiled.Events.Handlers.Player.InteractingDoor += EventHandlers.OnInteractingDoor;
             Exiled.Events.Handlers.Player.InteractingElevator += EventHandlers.OnInteractingElevator;
             Exiled.Events.Handlers.Player.UsingItem += EventHandlers.OnUsingItem;
+            Exiled.Events.Handlers.Player.Transmitting += EventHandlers.OnTransmitting;
+            Exiled.Events.Handlers.Player.VoiceChatting += EventHandlers.OnVoiceChatting;
             Exiled.Events.Handlers.Map.AnnouncingNtfEntrance += EventHandlers.OnAnnouncingNtfEntrance;
 
             base.OnEnabled();
@@ -40,9 +48,13 @@ namespace GalaPlugin
             Exiled.Events.Handlers.Player.InteractingDoor -= EventHandlers.OnInteractingDoor;
             Exiled.Events.Handlers.Player.InteractingElevator -= EventHandlers.OnInteractingElevator;
             Exiled.Events.Handlers.Player.UsingItem -= EventHandlers.OnUsingItem;
+            Exiled.Events.Handlers.Player.Transmitting -= EventHandlers.OnTransmitting;
+            Exiled.Events.Handlers.Player.VoiceChatting -= EventHandlers.OnVoiceChatting;
             Exiled.Events.Handlers.Map.AnnouncingNtfEntrance -= EventHandlers.OnAnnouncingNtfEntrance;
 
+            harmony.UnpatchAll(harmony.Id);
             EventHandlers = null;
+            Singleton = null;
             base.OnDisabled();
         }
     }

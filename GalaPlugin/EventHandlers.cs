@@ -112,6 +112,28 @@ namespace GalaPlugin
             ev.IsAllowed = false;
         }
 
+        public void OnTransmitting(TransmittingEventArgs ev)
+        {
+#if DEBUG
+            Log.Info("OnTransmitting Triggered");
+#endif
+            if (ev.Player.ReferenceHub.serverRoles.RemoteAdmin)
+                ev.IsAllowed = true;
+            else
+                ev.IsAllowed = false;
+        }
+
+        public void OnVoiceChatting(VoiceChattingEventArgs ev)
+        {
+#if DEBUG
+            Log.Info("OnTransmitting Triggered");
+#endif
+            if (ev.Player.ReferenceHub.serverRoles.RemoteAdmin)
+                ev.IsAllowed = true;
+            else
+                ev.IsAllowed = false;
+        }
+
         public void OnUsingItem(UsingItemEventArgs ev)
         {
 #if DEBUG
