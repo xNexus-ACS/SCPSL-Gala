@@ -2,6 +2,7 @@
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
+using MapEditorReborn.API.Features;
 using MEC;
 using UnityEngine;
 
@@ -20,6 +21,8 @@ namespace GalaPlugin
             GameObject.Find("StartRound").transform.localScale = Vector3.zero;
             Round.IsLobbyLocked = true;
             Round.IsLocked = false;
+
+            ObjectSpawner.SpawnSchematic("NombreSchematica", new Vector3(0,0,0));
         }
 
         public void OnTeamSpawn(RespawningTeamEventArgs ev)
